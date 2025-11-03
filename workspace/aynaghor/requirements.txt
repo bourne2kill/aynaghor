@@ -3,4 +3,7 @@ fastapi==0.110.*
 uvicorn[standard]==0.27.*
 streamlit==1.38.*
 python-dotenv==1.0.*
+google-generativeai==0.8.*
+requests==2.31.*
+aiohttp==3.9.*
 # optional – will be installed later by the agent when needed
