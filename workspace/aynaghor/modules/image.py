@@ -1,0 +1,1 @@
+# placeholder for Pillow / Diffusers integration
