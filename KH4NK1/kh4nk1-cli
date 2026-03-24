@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Simple wrapper to call the agent API from the host.
+# Usage: kh4nk1-cli '{"action":"run_shell","parameters":{"command":"echo hi"}}'
+curl -s -X POST http://localhost:3000/execute/task \
+     -H "Content-Type: application/json" \
+     -d "$@"
