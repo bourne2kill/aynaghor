@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  kh4nk1-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile.agent
+    container_name: kh4nk1-agent
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Mount the whole repository so the agent can read/write files
+      - ./:/app
+    ports:
+      - "3000:3000"
+    # Security – drop all caps except those needed for sudo
+    cap_drop:
+      - ALL
+    cap_add:
+      - CAP_SETUID
+      - CAP_SETGID
+      - CAP_SYS_ADMIN   # required for sudo inside container

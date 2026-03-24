@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  aynaghor-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.aynaghor
+    container_name: aynaghor-app
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./:/app
+    ports:
+      - "8501:8501"
+    depends_on:
+      kh4nk1-agent:
+        condition: service_healthy
