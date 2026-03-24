@@ -1,0 +1,27 @@
+# -------------------------------------------------
+# KH4NK1 – AI‑Agent container
+# -------------------------------------------------
+FROM python:3.11-slim
+
+# System utilities (git, curl, ffmpeg, sudo)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git curl ffmpeg sudo && rm -rf /var/lib/apt/lists/*
+
+# Non‑root user with password‑less sudo
+RUN useradd -m agent && \
+    echo "agent ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+WORKDIR /app
+
+# Python dependencies for the agent
+COPY requirements.agent.txt .
+RUN pip install --no-cache-dir -r requirements.agent.txt
+
+# Copy source code (will be added later)
+COPY agent/ ./agent/
+COPY utils/ ./utils/
+
+EXPOSE 3000
+ENV PYTHONUNBUFFERED=1
+
+CMD ["uvicorn", "agent.main:app", "--host", "0.0.0.0", "--port", "3000"]
