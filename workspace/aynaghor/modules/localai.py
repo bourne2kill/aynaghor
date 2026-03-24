@@ -1,0 +1,1 @@
+# wrapper around a local GGUF model (host.docker.internal:8000)
