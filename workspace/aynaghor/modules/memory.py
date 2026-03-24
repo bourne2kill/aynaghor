@@ -1,0 +1,1 @@
+# simple JSON vector store placeholder
