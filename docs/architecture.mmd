@@ -1,0 +1,8 @@
+graph TD;
+    Agent[KH4NK1 AI‑Agent] -->|writes files| App[AYNAGH0R workspace];
+    App -->|calls| LLM[Local GGUF or Gemini];
+    UI[Streamlit] -->|talks to| Engine[core/engine.py];
+    Engine --> LLM;
+    OpenHands[OpenHands Platform] -->|manages| Agent;
+    User[User] -->|interacts with| UI;
+    User -->|configures| Agent;
